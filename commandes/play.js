@@ -8,7 +8,7 @@ zokou({
   nomCom: "play1",
   aliases: ["song", "playdoc", "audio", "mp3"],
   categorie: "Search",
-  reaction: "🎶"
+  reaction: "🎥"
 }, async (dest, zk, commandOptions) => {
   const { arg, ms, repondre } = commandOptions;
 
@@ -92,8 +92,8 @@ zokou({
             mediaType: 1,
             sourceUrl: conf.GURL,
             thumbnailUrl: firstVideo.thumbnail,
-            renderLargerThumbnail: false,
-            showAdAttribution: true,
+            renderLargerThumbnail: true,
+            showAdAttribution: false,
           },
         },
       },
@@ -128,7 +128,7 @@ zokou({
 // Define the command with aliases for video
 zokou({
   nomCom: "video",
-  aliases: ["mp4", "film", "mp4"],
+  aliases: ["videodoc", "film", "mp4"],
   categorie: "Search",
   reaction: "🎥"
 }, async (dest, zk, commandOptions) => {
@@ -188,28 +188,19 @@ zokou({
     const videoDetails = downloadData.result;
 
     // Prepare the message payload with external ad details
-    const messagePayloads ={
-           caption: `\n*ᴄᴀsᴇʏʀʜᴏᴅᴇs ᴍᴅ ᴍᴜsɪᴄ*\n
-╭┈┈┈⊷
-┊Title: ${songTitle} 
-┊Quality: High
-┊Duration: ${firstVideo.timestamp}
-╰┈┈┈⊷
-╭┈┈┈⊷
-┊🌐channel links🖇️: https://tinyurl.com/26kh6jss
-╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈⊷`,
-      document: { url: downloadUrl },
-        mimetype: 'audio/mpeg',
+    const messagePayloads = [
+      {
+        video: { url: downloadUrl },
+        mimetype: 'video/mp4',
         contextInfo: {
           externalAdReply: {
-            title: "ᴄᴀsᴇʏʀʜᴏᴅᴇs ᴍᴅ ᴍᴜsɪᴄ" ,
-            body: "ᴛᴀᴘ ʜᴇʀ ᴛᴏ ғᴏʟʟᴏᴡ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ",
+            title: videoDetails.title,
+            body: videoDetails.title,
             mediaType: 1,
-            sourceUrl:"https://whatsapp.com/channel/0029VakUEfb4o7qVdkwPk83E",
+            sourceUrl: conf.GURL,
             thumbnailUrl: firstVideo.thumbnail,
-            renderLargerThumbnail: false,
-            showAdAttribution: true,
-        
+            renderLargerThumbnail: true,
+            showAdAttribution: false,
           },
         },
       },
@@ -223,8 +214,8 @@ zokou({
             mediaType: 1,
             sourceUrl: conf.GURL,
             thumbnailUrl: firstVideo.thumbnail,
-            renderLargerThumbnail: false,
-            showAdAttribution: true,
+            renderLargerThumbnail: true,
+            showAdAttribution: false,
           },
         },
       }
@@ -240,4 +231,3 @@ zokou({
     return repondre(`Download failed due to an error: ${error.message || error}`);
   }
 });
-      

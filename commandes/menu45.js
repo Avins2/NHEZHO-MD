@@ -1,6 +1,3 @@
-// this is caseyrhodes shit nuhh😂😂
-//get the fuck outa here
-
 const axios = require("axios");
 const { zokou } = require(__dirname + "/../framework/zokou");
 const { format } = require(__dirname + "/../framework/mesfonctions");
@@ -22,13 +19,12 @@ const toFancyUppercaseFont = (text) => {
 // Function to convert text to fancy lowercase font
 const toFancyLowercaseFont = (text) => {
     const fonts = {
-        'a': '𝚊', 'b': '𝚋', 'c': '𝚌', 'd': '𝚍', 'e': '𝚎', 'f': '𝚏', 'g': '𝚐', 'h': '𝚑', 'i': '𝚒', 'j': '𝚓', 'k': '𝚔', 'l': '𝚕', 'm': '𝚖', 
+        'a': '𝚊', 'b': '𝚋', 'c': '𝚌', 'd': '𝚍', 'e': '𝚎', 'f': '𝚏', 'g': '𝚐', 'h': '𝚑', 'i': '𝚒', 'j': '𝚓', 'k': '𝚔', 'l': '𝚕', 'm': '𝚖',
         'n': '𝚗', 'o': '𝚘', 'p': '𝚙', 'q': '𝚚', 'r': '𝚛', 's': '𝚜', 't': '𝚝', 'u': '𝚞', 'v': '𝚟', 'w': '𝚠', 'x': '𝚡', 'y': '𝚢', 'z': '𝚣'
     };
     return text.split('').map(char => fonts[char] || char).join('');
 };
 
-// Function to format uptime
 const formatUptime = (seconds) => {
     seconds = Number(seconds);
     const days = Math.floor(seconds / 86400);
@@ -44,7 +40,6 @@ const formatUptime = (seconds) => {
     ].filter(Boolean).join(', ');
 };
 
-// Function to fetch GitHub stats
 const fetchGitHubStats = async () => {
     try {
         const response = await axios.get("https://api.github.com/repos/caseyweb/NHEZHO-MD");
@@ -108,10 +103,9 @@ const getRandomQuote = () => {
     return quotes[randomIndex];
 };
 
-// Keith command handler for 'menu' command
-keith({ nomCom: "menu", aliases: ["liste", "helplist", "commandlist"], categorie: "SYSTEM" }, async (message, client, config) => {
+zokou({ nomCom: "menu5", aliases: ["liste", "helplist", "commandlist"], categorie: "system" }, async (message, client, config) => {
     const { ms, respond, prefix, nomAuteurMessage } = config;
-    const commands = require(__dirname + "/../keizzah/keith").cm;
+    const commands = require(__dirname + "/../fredi/ezra").cm;
     const categorizedCommands = {};
     const mode = settings.MODE.toLowerCase() !== "public" ? "Private" : "Public";
 
@@ -124,7 +118,6 @@ keith({ nomCom: "menu", aliases: ["liste", "helplist", "commandlist"], categorie
         categorizedCommands[category].push(command.nomCom);
     });
 
-    // Get current time and format it
     moment.tz.setDefault("Africa/Nairobi");
     const currentTime = moment();
     const formattedTime = currentTime.format("HH:mm:ss");
@@ -134,58 +127,49 @@ keith({ nomCom: "menu", aliases: ["liste", "helplist", "commandlist"], categorie
     const greetings = ["Good Morning 🌄", "Good Afternoon 🌃", "Good Evening ⛅", "Good Night 🌙"];
     const greeting = currentHour < 12 ? greetings[0] : currentHour < 17 ? greetings[1] : currentHour < 21 ? greetings[2] : greetings[3];
 
-    // Fetch GitHub stats
     const { totalUsers } = await fetchGitHubStats();
     const formattedTotalUsers = totalUsers.toLocaleString();
 
-    // Get random quote
     const randomQuote = getRandomQuote();
 
-    // Prepare response message
     let responseMessage = `
  ${greeting}, *${nomAuteurMessage || "User"}*
 
-*Be motivated with this inspiration quote🫧*   
-"💎${randomQuote}💎"
 
-╭━━━ 〔 𝐂𝐀𝐒𝐄𝐘𝐑𝐇𝐎𝐃𝐄𝐒 𝐗𝐌𝐃 〕━━━┈⊷
-┃✵╭───────────────
-┃✵│▸ *ʙᴏᴛ ᴏᴡɴᴇʀ:* ${settings.OWNER_NAME}
-┃✵│▸ *ᴘʀᴇғɪx:* *[ ${settings.PREFIXE} ]*
-┃✵│▸ *ᴛɪᴍᴇ:* ${formattedTime}
-┃✵│▸ *ᴄᴏᴍᴍᴀɴᴅꜱ:* ${commands.length}
-┃✵│▸ *ᴅᴀᴛᴇ:* ${formattedDate}
-┃✵│▸ *ᴍᴏᴅᴇ:* ${mode}
-┃✵│▸ *ᴛɪᴍᴇ ᴢᴏɴᴇ:* Africa/Nairobi
-┃✵│▸ *ᴛᴏᴛᴀʟ ᴜsᴇʀs:* ${formattedTotalUsers} users
-┃✵│▸ *ʀᴀᴍ:* ${format(os.totalmem() - os.freemem())}/${format(os.totalmem())}
-┃✵│▸ *ᴜᴘᴛɪᴍᴇ:* ${formatUptime(process.uptime())}
-┃✵╰───────────────
-╰━━━━━━━━━━━━━━━┈⊷
-━━━━━━━━━━━━━━━━
-🎇 *QUOTE* 🎆
-"${randomQuote}"
-━━━━━━━━━━━━━━━━
-> 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐂𝐀𝐒𝐄𝐘𝐑𝐇𝐎𝐃𝐄𝐒
+*${randomQuote}*
+
+╭═ 〔 *${settings.BOT}* 〕═┈⊷
+┣◆ *ʙᴏᴛ ᴏᴡɴᴇʀ:* ${settings.OWNER_NAME} 
+┣◆ *ᴘʀᴇғɪx:* *[ ${settings.PREFIXE} ]*
+┣◆ *ᴛɪᴍᴇ:* ${formattedTime}
+┣◆ *ᴄᴏᴍᴍᴀɴᴅꜱ:* ${commands.length} 
+┣◆ *ᴅᴀᴛᴇ:* ${formattedDate}
+┣◆ *ᴍᴏᴅᴇ:* ${mode}
+┣◆ *ᴛɪᴍᴇ ᴢᴏɴᴇ:* Africa/Nairobi
+┣◆ *ᴛᴏᴛᴀʟ ᴜsᴇʀs:* ${formattedTotalUsers} users
+┣◆ *ʀᴀᴍ:* ${format(os.totalmem() - os.freemem())}/${format(os.totalmem())}
+┣◆ *ᴜᴘᴛɪᴍᴇ:* ${formatUptime(process.uptime())}
+╰═══┈⊷
+
+*${randomQuote}*
+
 `;
 
-    // List commands
     let commandsList = "*𝐀𝐕𝐀𝐈𝐋𝐀𝐁𝐋𝐄 𝐂𝐎𝐌𝐌𝐀𝐍𝐃𝐒*\n";
     const sortedCategories = Object.keys(categorizedCommands).sort();
     let commandIndex = 1;
 
     for (const category of sortedCategories) {
-        commandsList += `\n*╭─────「 ${toFancyUppercaseFont(category)} 」──┈⊷*\n│◦➛╭───────────────`;
+        commandsList += `\n*┈「 ${toFancyUppercaseFont(category)} 」┈*\n╭┈┈┈┈┈┈┈┈┈┈┈⊷`;
         const sortedCommands = categorizedCommands[category].sort();
         for (const command of sortedCommands) {
-            commandsList += `\n│◦➛ ${commandIndex++}. ${toFancyLowercaseFont(command)}`;
+            commandsList += `\n┊▸ ${commandIndex++}. ${toFancyLowercaseFont(command)}`;
         }
-        commandsList += "\n│◦➛╰─────────────\n╰──────────────┈⊷\n";
+        commandsList += "\n╰┈┈┈┈┈┈┈┈┈┈┈⊷\n";
     }
 
-    commandsList += readMore + "\nPOWERED BY CASEYRHODES\n";
+    commandsList += readMore + "\nworld of caseyrhodes we are happy\n";
 
-    // Send message
     try {
         const senderName = message.sender || message.from;
         await client.sendMessage(message, {
@@ -193,10 +177,10 @@ keith({ nomCom: "menu", aliases: ["liste", "helplist", "commandlist"], categorie
             contextInfo: {
                 mentionedJid: [senderName],
                 externalAdReply: {
-                    title: "🌟𝗖𝗔𝗦𝗘𝗬𝗥𝗛𝗢𝗗𝗘𝗦-𝗫𝗞𝗗✨",
-                    body: "POWERED BY CASEYRHODES",
-                    thumbnailUrl: "https://files.catbox.moe/yedfbr.jpg",
-                    sourceUrl: "https://whatsapp.com/channel/0029VakUEfb4o7qVdkwPk83E",
+                    title: settings.BOT,
+                    body: settings.OWNER_NAME,
+                    thumbnailUrl: settings.URL,
+                    sourceUrl: settings.GURL,
                     mediaType: 1,
                     renderLargerThumbnail: true
                 }
